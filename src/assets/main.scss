@@ -1,3 +1,5 @@
+@import "./scss/breakpoints.scss";
+
 @mixin installFont($family, $src, $style: normal, $weight: 'normal', $format: 'woff') {
 	@font-face {
 		font-family: '#{$family}';
@@ -11,6 +13,10 @@
 @include installFont('Guardian',
 	'@/assets/fonts/Guardian-Text-Egyp-Web-Regular',
 	'normal',
+	400);
+@include installFont('Guardian',
+	'@/assets/fonts/Guardian-Text-Egyp-Web-Regular-Italic',
+	'italic',
 	400);
 @include installFont('Guardian',
 	'@/assets/fonts/Guardian-Text-Egyp-Web-Medium',
@@ -29,6 +35,7 @@
 
 html {
 	font-size: 20px;
+	margin: 0;
 }
 
 body {
@@ -36,7 +43,7 @@ body {
 	font-family: 'Guardian', sans-serif;
 	color: #333;
 	line-height: 1.5;
-	;
+	margin: 0;
 }
 
 a {
@@ -50,4 +57,14 @@ a {
 img {
 	max-width: 100%;
 	height: auto;
+}
+
+
+
+h2 {
+	font-size: 1rem;
+
+	@include md-up {
+		font-size: 1.25rem;
+	}
 }

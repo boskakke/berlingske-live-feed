@@ -46,7 +46,7 @@ const cleanContent = (post) => {
 .container {
   max-width: 650px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 .8rem;
 }
 
 article>div {

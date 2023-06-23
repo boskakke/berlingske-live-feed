@@ -41,19 +41,11 @@ const getCaption = (content) => {
 	return content
 }
 
-
 onMounted(() => {
 	getImageUrl(props.images)
 	getCaption(props.content)
 }
-
-
-
 )
-
-
-
-
 
 const getDate = (date) => {
 	dayjs.locale('da')
@@ -72,10 +64,7 @@ const getDate = (date) => {
 			</div>
 		</div>
 
-
-
 		<div v-html="getContent(content)" />
-
 		<div v-if="twitterUrl">
 			<twitter>
 				<a class="twitter-timeline" :href="twitterUrl"></a>
@@ -126,7 +115,7 @@ figure {
 
 	margin-bottom: 1rem;
 	border-bottom: 1px solid #ddd;
-	padding-bottom: 2rem;
+	padding-bottom: 1rem;
 }
 
 .scrbbl-sitePreview {
