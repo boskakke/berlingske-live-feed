@@ -1,0 +1,53 @@
+@mixin installFont($family, $src, $style: normal, $weight: 'normal', $format: 'woff') {
+	@font-face {
+		font-family: '#{$family}';
+		src: url('#{$src}.#{$format}') format('#{$format}');
+		font-weight: #{$weight};
+		font-style: #{$style};
+		font-display: swap;
+	}
+}
+
+@include installFont('Guardian',
+	'@/assets/fonts/Guardian-Text-Egyp-Web-Regular',
+	'normal',
+	400);
+@include installFont('Guardian',
+	'@/assets/fonts/Guardian-Text-Egyp-Web-Medium',
+	'normal',
+	500);
+@include installFont('Guardian',
+	'@/assets/fonts/Guardian-Text-Egyp-Web-Bold',
+	'normal',
+	700);
+
+
+:root {
+	--link: #007cbb;
+	--link-hover: #4183a7;
+}
+
+html {
+	font-size: 20px;
+}
+
+body {
+	background-color: white;
+	font-family: 'Guardian', sans-serif;
+	color: #333;
+	line-height: 1.5;
+	;
+}
+
+a {
+	color: var(--link);
+
+	&:hover {
+		color: var(--link-hover);
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
