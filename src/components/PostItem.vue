@@ -125,16 +125,22 @@ figure {
 
 
 	.Media {
-		flex: 140px 0 0;
+		flex: 120px 0 0;
+		display: flex;
+		align-items: center;
 
 		img {
 			border-radius: 3px;
 		}
 	}
 
+	h3 {
+		margin: 0;
+	}
+
 	.scrbbl-sitePreview-inner {
 		flex: auto;
-		font-size: .75rem;
+		font-size: .7rem;
 	}
 
 }
