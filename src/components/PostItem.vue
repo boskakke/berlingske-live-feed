@@ -120,15 +120,21 @@ figure {
 
 .scrbbl-sitePreview {
 	display: flex;
-	gap: 1rem;
+	gap: .8rem;
 	align-items: center;
+
 
 	.Media {
 		flex: 140px 0 0;
+
+		img {
+			border-radius: 3px;
+		}
 	}
 
 	.scrbbl-sitePreview-inner {
 		flex: auto;
+		font-size: .75rem;
 	}
 
 }
