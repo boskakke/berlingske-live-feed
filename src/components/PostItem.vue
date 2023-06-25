@@ -55,7 +55,6 @@ const getDate = (date) => {
 </script>
 <template>
 	<div class="post">
-
 		<div class="byline">
 			<div class="avatar" v-if="author.Avatar"><img :src="author.Avatar" class="avatar__img" /></div>
 			<div class="byline__content">
@@ -71,6 +70,7 @@ const getDate = (date) => {
 			</twitter>
 		</div>
 
+
 		<figure v-if="imageUrl" class="fig">
 			<img :src="imageUrl" alt="Test" width="1000" />
 			<figcaption v-if="figCaption">
@@ -82,6 +82,26 @@ const getDate = (date) => {
 
 
 <style scoled lang="scss">
+.comment-blockquote {
+	background: #eee;
+	border-radius: 16px 16px 0 16px;
+	padding: 1rem;
+	position: relative;
+	margin-bottom: 13px;
+
+	&:after {
+		transform: rotate(-90deg);
+		content: '';
+		position: absolute;
+		right: -8px;
+		bottom: -2px;
+		width: 8px;
+		height: 13px;
+		background-size: 100%;
+		background-image: var(--dot--dark);
+	}
+}
+
 li::marker {
 	color: var(--link);
 	font-size: 1.5em;
@@ -91,7 +111,6 @@ div,
 p,
 li {
 	font-size: .85rem;
-	line-height: 1.4;
 }
 
 li {
@@ -112,10 +131,23 @@ figure {
 }
 
 .post {
+	margin-top: 1rem;
+	padding-top: 1rem;
+	position: relative;
+	--dot--dark: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2' xml:space='preserve'%3E%3Ccircle cx='.5' cy='.5' r='.5' fill='%23000'/%3E%3C/svg%3E") repeat;
 
-	margin-bottom: 1rem;
-	border-bottom: 1px solid #ddd;
-	padding-bottom: 1rem;
+	&:after {
+		content: "";
+		background: var(--dot--dark);
+		background-size: 2px;
+		width: 100%;
+		height: 6px;
+		display: block;
+		opacity: .3;
+		position: absolute;
+		top: 0;
+
+	}
 }
 
 .scrbbl-sitePreview {

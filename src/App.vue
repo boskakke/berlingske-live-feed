@@ -1,10 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import PostItem from '@/components/PostItem.vue'
-
-
-
-
 const data = ref(null)
 const error = ref(null)
 const postsToShow = ref(5)
