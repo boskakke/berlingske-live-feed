@@ -1,43 +1,34 @@
 <script setup>
-import { onMounted, ref } from 'vue';
 import PostItem from '@/components/PostItem.vue'
-const data = ref(null)
-const error = ref(null)
-const postsToShow = ref(5)
 
+// const url = 'https://livecentercdn.norkon.net/BulletinFeed/berlingske/41454/Initial/'
 
+// const url2 = 'https://livecentercdn.norkon.net/BulletinFeed/berlingske/41454/Earlier/6951552/'
 
-fetch('https://api.scribblelive.com/v1/stream/3025174/posts?PageNumber=0&PageSize=99&NewestAtBottom=false&IncludeComments=false&token=9yyBmETN')
-  .then((res) => res.json())
-  .then((json) => {
-    data.value = json
-  })
-  .catch((err) => (error.value = err))
-const cleanContent = (post) => {
-  const cleanPost = post.replace('h1', 'h2')
+import { computed } from 'vue'
+import { useFetch } from '@vueuse/core'
 
-  return cleanPost
-}
-
-
+// 41454 Ukraine
+// 41389 Gaza
+const url = computed(() => {
+  return `https://livecentercdn.norkon.net/BulletinFeed/berlingske/41389/Initial/`
+})
+const { isFetching, data, error } = useFetch(url, {
+  refetch: false
+})
+  .get()
+  .json()
 </script>
 
 <template>
   <div v-if="error">Oops! Error encountered: {{ error.message }}</div>
-  <template v-else-if="data">
-    <div class="container">
-      <PostItem v-for="(post, index) in postsToShow" :key="post.CreationDate" :date="data.posts[index].CreationDate"
-        :author="data.posts[index].Creator" :content="cleanContent(data.posts[index].Content)"
-        :images="data.posts[index].PostMeta?.Images">
-      </PostItem>
-      <div class="loadMore">
-        <button @click="postsToShow += 5">Hent flere</button>
-      </div>
-    </div>
-  </template>
+  <div v-else-if="isFetching">Loading</div>
   <div v-else>
-    <div class="loader">
-      Loading...
+    <div class="container">
+      <div v-for="post in data?.result?.addedOrChanged" :key="post.id">
+        <!-- <PostItem :content="post" :avatars="data?.result?.channelContent?.avatars" /> -->
+        <PostItem :content="post" :avatars="data?.result?.channelContent?.avatars" />
+      </div>
     </div>
   </div>
 </template>
@@ -46,11 +37,10 @@ const cleanContent = (post) => {
 .container {
   max-width: 650px;
   margin: 0 auto;
-  padding: 1rem .8rem;
-
+  padding: 1rem 0.8rem;
 }
 
-article>div {
+article > div {
   margin: 1rem;
 }
 
@@ -64,14 +54,14 @@ article>div {
 button {
   appearance: none;
   background-color: var(--link);
-  transition: all .2s ease;
+  transition: all 0.2s ease;
   color: #fff;
   padding: 0 2rem;
   font-family: 'Guardian', sans-serif;
   font-weight: 700;
   border-radius: 3px;
   border: 0;
-  font-size: .75rem;
+  font-size: 0.75rem;
   line-height: 1;
   cursor: pointer;
   text-transform: uppercase;
@@ -79,7 +69,6 @@ button {
   height: 45px;
 
   &:hover {
-
     background-color: var(--link-hover);
   }
 }
